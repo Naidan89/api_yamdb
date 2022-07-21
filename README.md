@@ -1,46 +1,49 @@
-# Project Title
 
-## Table of Contents
+REST API для сервиса ***YaMDb** версия без Docker
+База отзывов о фильмах, книгах и музыке. 
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
+Групповой итоговый проект студентов _Яндекс.Практикум_ по курсу **"Работа с внешними API"**
 
-## About <a name = "about"></a>
+**Описание**
+Проект **YaMDb** собирает отзывы пользователей на произведения. 
+Произведения делятся на категории: «Книги», «Фильмы», «Музыка». 
+Список категорий (Category) может быть расширен (например, можно добавить категорию 
+«Изобразительное искусство» или «Ювелирка» через интерфейс Django администратора).
 
-Write about 1-2 paragraphs describing the purpose of your project.
+**API для сервиса YaMDb.** позволяет работать со следующими сущностями:
 
-## Getting Started <a name = "getting_started"></a>
+**Пользователи** (Получить список всех пользователей, создание пользователя, получить пользователя по username, изменить данные пользователя по username, удалить пользователя по username, получить данные своей учетной записи, изменить данные своей учетной записи)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+**Произведения**, к которым пишут отзывы (Получить список всех объектов, создать произведение для отзывов, информация об объекте, обновить информацию об объекте, удалить произведение)
 
-### Prerequisites
+**Категории** (типы) произведений (Получить список всех категорий, создать категорию, удалить категорию)
 
-What things you need to install the software and how to install them.
+**Жанры** (Получить список всех жанров, создать жанр, удалить жанр)
 
-```
-Give examples
-```
+**Отзывы** (Получить список всех отзывов, создать новый отзыв, получить отзыв по id, частично обновить отзыв по id, удалить отзыв по id)
 
-### Installing
+**Коментарии к отзывам** (Получить список всех комментариев к отзыву по id, создать новый комментарий для отзыва, получить комментарий для отзыва по id, частично обновить комментарий к отзыву по id, удалить комментарий к отзыву по id)
 
-A step by step series of examples that tell you how to get a development env running.
+**JWT-токен** (Отправление confirmation_code на переданный email, получение JWT-токена в обмен на email и confirmation_code)
 
-Say what the step will be
+При первом запуске для функционирования проекта обязательно выполнить миграции:
 
-```
-Give the example
-```
+`./ manage.py makemigrations` 
 
-And repeat
+`./ manage.py migrate`
 
-```
-until finished
-```
+При желании вы можете загрузить демо-данные в базу данных командой
 
-End with an example of getting some data out of the system or using it for a little demo.
+`./manage.py loaddata data/fixtures.json
+`
 
-## Usage <a name = "usage"></a>
+**Участники:**
 
-Add notes about how to use the system.
+[Дубшанов Найдан.](https://github.com/Naidan89)
+Управление пользователями (Auth и Users): система регистрации и аутентификации, права доступа, работа с токеном, система подтверждения e-mail, поля.
+
+[Пирожок Василий.](https://github.com/VasyaPirozhok)
+Категории (Categories), жанры (Genres) и произведения (Titles): модели, view и эндпойнты для них и рейтинги.
+
+[Цыбин Артем.](https://github.com/ArtTRTR/) 
+Отзывы (Review) и комментарии (Comments): модели и view, эндпойнты, права доступа для запросов. Рейтинги произведений.
